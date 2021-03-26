@@ -375,6 +375,8 @@ graylog:
   init:
     ## Init Container image
     ##
+    ## Configure initContainer enabled: true/false
+    enabled: true
     image:
       repository: "alpine"
       pullPolicy: "IfNotPresent"
@@ -428,6 +430,15 @@ graylog:
     ## Secret annotations
     ##
     annotations: {}
+
+
+## Graylog containers' Security Context (main and init container).
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+##
+containerSecurityContext:
+  enabled: false
+  runAsUser: 1001
+  runAsNonRoot: true    
 
 ## Specify Elasticsearch version from requirement dependencies. Ignore this seection if you install Elasticsearch manually.
 ## Note: Graylog 2.4 requires Elasticsearch version <= 5.6
